@@ -1,0 +1,15 @@
+#update all values here
+export TF_VAR_accountId="#change"
+export TF_VAR_region="#change"
+export TF_VAR_main_cidr="#change"
+export TF_VAR_privateSubApne1a_cidr="#change"
+export TF_VAR_publicSubApne1a_cidr="#change"
+export TF_VAR_privateSubApne1c_cidr="#change"
+export TF_VAR_publicSubApne1c_cidr="#change"
+export TF_VAR_project_name="#change"
+export TF_VAR_ecs_service_count="#change"
+export TF_VAR_roleAdm="#change"
+export TF_VAR_dbuser=$dbusername
+export TF_VAR_dbpass=$dbpassword
+export TF_VAR_database=$database
+export TF_VAR_DBCRED=$secretdbid
