@@ -1,9 +1,8 @@
 ################################################  
-#                    DAY 1                     #  
+## DAY 1: PRE-REQ                             ##  
 ################################################  
-###                 PRE-REQ                  ###  
-################################################  
-#  
+##  
+##  
 - docker installed.  
 - ansible installed (if possible all module or install ansible-galaxy collection install community.aws as the playbook uses some aws modules e.g: ansible-galaxy collection install community.aws ).  
 - terraform installed.  
@@ -36,6 +35,6 @@
 - terraform apply  
 
 #################################################
-#                    DAY 2/BAU                  #
+## DAY 2/BAU                                   ##
 #################################################  
 ???
