@@ -16,9 +16,6 @@ variable "task_families_name" {
   type    = list(string)
   default = ["app1", "app2", "app3"]
 }
-variable "roleAdm" {
-  
-}
 
 variable "db_img_name" {
   type    = string
