@@ -13,3 +13,10 @@ export TF_VAR_dbuser=$dbusername
 export TF_VAR_dbpass=$dbpassword
 export TF_VAR_database=$database
 export TF_VAR_DBCRED=$secretdbid
+export TF_VAR_dbusername=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+export TF_VAR_dbpassword=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$3}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+export TF_VAR_database=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$4}' | awk -F',' '{print$1}' | sed 's/\"//g' | sed 's/\}//g' | tr -d \'\" )
+###if you are using localstack please use below
+#export TF_VAR_dbusername=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+#export TF_VAR_dbpassword=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$3}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+#export TF_VAR_database=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$4}' | awk -F',' '{print$1}' | sed 's/\"//g' | sed 's/\}//g' | tr -d \'\" )

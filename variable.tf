@@ -11,10 +11,11 @@ variable "ecs_service_count" {}
 variable "dbusername" {}
 variable "dbpassword" {}
 variable "database" {}
+variable "roleAdm" {}
 variable "DBCRED" {}
 variable "task_families_name" {
   type    = list(string)
-  default = ["app1", "app2", "app3"]
+  default = ["app1", "app2", "app3"] #change this accordingly
 }
 
 variable "db_img_name" {
