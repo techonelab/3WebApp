@@ -1,4 +1,4 @@
-#created by roselio a.k.a sonny, viray
+#created by roselio a.k.a sonny
 #I will not be held responsible for any underlying cost that will occur on you account by using this code
 #feel free to use but make sure to modify accordingly to your requirements
 #################################################
@@ -37,7 +37,6 @@ resource "aws_iam_policy_attachment" "dbToEcsRole" {
   roles      = [aws_iam_role.customEcsRole.name]
   name       = "dbToEcs"
 }
-
 #################################################
 #                       CORE                    #
 #################################################
@@ -467,7 +466,7 @@ resource "aws_lb_target_group" "lbTargetGrp" {
 }
 
 resource "aws_ecr_repository" "app1" {
-  name = "app1" #update this should be same value from what you declared in ansiblesource
+  name = "${var.task_families_name[0]}"
   depends_on = [
     aws_vpc_endpoint.endpointEcrApi,
     aws_vpc_endpoint.endpointS3
@@ -475,7 +474,7 @@ resource "aws_ecr_repository" "app1" {
 }
 
 resource "aws_ecr_repository" "app2" {
-  name = "app2" #update this should be same value from what you declared in ansiblesource
+  name = "${var.task_families_name[1]}"
   depends_on = [
     aws_vpc_endpoint.endpointEcrApi,
     aws_vpc_endpoint.endpointS3
@@ -483,7 +482,7 @@ resource "aws_ecr_repository" "app2" {
 }
 
 resource "aws_ecr_repository" "app3" {
-  name = "app3" #update this should be same value from what you declared in ansiblesource
+  name = "${var.task_families_name[2]}"
   depends_on = [
     aws_vpc_endpoint.endpointEcrApi,
     aws_vpc_endpoint.endpointS3

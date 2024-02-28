@@ -1,8 +1,0 @@
-#update values here
-export ANSIBLE_VARS_accountID="#change"
-export ANSIBLE_VARS_region="#change"
-export ANSIBLE_VARS_secretdbid="#change" #secret manager key you created in pre-req stage
-export ASNIBLE_VARS_userAdm="#change" #role of iam role you created in pre-req stage
-export ANSIBLE_VARS_appname1="#change" #change accordingly
-export ANSIBLE_VARS_appname1="#change" #change accordingly
-export ANSIBLE_VARS_appname1="#change" #change accordingly
