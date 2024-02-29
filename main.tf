@@ -309,6 +309,37 @@ resource "aws_lb_listener" "lbListener" {
   depends_on = [aws_lb_target_group.lbTargetGrp]
 }
 
+
+#if you want to test using a self signed cert uncomment below and make sure to create your self signed cert then upload it to your aws account
+#if for example you are using localstack if not remove the endpoint url e.g: aws iam upload-server-certificate --server-certificate-name testonly --certificate-body file://selfsigned/testonly.crt --private-key file://selfsigned/testonly.key --endpoint-url=http://localhost:4566
+#resource "aws_lb_listener" "lbListener" {
+#  load_balancer_arn = aws_lb.extLb.arn
+#  port              = 80
+#  protocol          = "HTTP"
+#  default_action {
+#    type = "redirect"
+#    redirect {
+#      port = 443
+#      protocol = "HTTPS"
+#      status_code = "HTTP_301"
+#    }
+#
+#  }
+#  depends_on = [aws_lb_target_group.lbTargetGrp]
+#}
+#
+#resource "aws_lb_listener" "lbListener443" {
+#  load_balancer_arn = aws_lb.extLb.arn
+#  port              = 443
+#  protocol          = "HTTPS"
+#  certificate_arn = "arn:aws:iam::${local.accountId}:server-certificate/testonly" #change this accordingly
+#  default_action {
+#    target_group_arn = aws_lb_target_group.lbTargetGrp.arn
+#    type             = "forward"
+#  }
+#  depends_on = [aws_lb_target_group.lbTargetGrp]
+#}
+
 # security groups
 resource "aws_security_group" "lbSecurityGrp" {
   description = "main sg for loadbalancer"
@@ -457,8 +488,10 @@ resource "aws_lb_target_group" "lbTargetGrp" {
     healthy_threshold   = 5
     matcher             = "200"
   }
-  port        = 80
-  protocol    = "HTTP"
+  #port        = 80
+  #protocol    = "HTTP"
+  port = 443
+  protocol = "HTTPS"
   target_type = "ip"
   vpc_id      = aws_vpc.main.id
   name        = "ecs-tg"

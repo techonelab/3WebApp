@@ -1,22 +1,40 @@
 #update all values here
-export TF_VAR_accountId="#change"
-export TF_VAR_region="#change"
-export TF_VAR_main_cidr="#change"
-export TF_VAR_privateSubApne1a_cidr="#change"
-export TF_VAR_publicSubApne1a_cidr="#change"
-export TF_VAR_privateSubApne1c_cidr="#change"
-export TF_VAR_publicSubApne1c_cidr="#change"
-export TF_VAR_project_name="#change"
-export TF_VAR_ecs_service_count="#change"
-export TF_VAR_roleAdm="#change"
-export TF_VAR_dbuser=$dbusername
-export TF_VAR_dbpass=$dbpassword
-export TF_VAR_database=$database
+#export secretdbid="#change"
+#export TF_VAR_accountId="#change"
+#export TF_VAR_region="#change"
+#export TF_VAR_main_cidr="#change"
+#export TF_VAR_privateSubApne1a_cidr="#change"
+#export TF_VAR_publicSubApne1a_cidr="#change"
+#export TF_VAR_privateSubApne1c_cidr="#change"
+#export TF_VAR_publicSubApne1c_cidr="#change"
+#export TF_VAR_project_name="#change"
+#export TF_VAR_ecs_service_count="#change"
+#export TF_VAR_roleAdm="#change"
+#export TF_VAR_selfsignedcert="#change"
+#export TF_VAR_DBCRED=$secretdbid
+#export TF_VAR_dbusername=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+#export TF_VAR_dbpassword=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$3}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+#export TF_VAR_database=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$4}' | awk -F',' '{print$1}' | sed 's/\"//g' | sed 's/\}//g' | tr -d \'\" )
+#export dbusername=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+#export dbpassword=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$3}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+#export database=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$4}' | awk -F',' '{print$1}' | sed 's/\"//g' | sed 's/\}//g' | tr -d \'\" )
+
+###sample below is for localstack environment
+export secretdbid="hl-cred-db"
+export TF_VAR_selfsignedcert="arn:aws:iam::000000000000:server-certificate/testonly"
+export TF_VAR_accountId="000000000000"
+export TF_VAR_region="ap-northeast-1"
+export TF_VAR_main_cidr="10.0.0.0/16"
+export TF_VAR_privateSubApne1a_cidr="10.0.0.0/20"
+export TF_VAR_publicSubApne1a_cidr="10.0.16.0/20"
+export TF_VAR_privateSubApne1c_cidr="10.0.32.0/20"
+export TF_VAR_publicSubApne1c_cidr="10.0.64.0/20"
+export TF_VAR_project_name="horizonlabs"
+export TF_VAR_ecs_service_count="3"
 export TF_VAR_DBCRED=$secretdbid
-export TF_VAR_dbusername=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
-export TF_VAR_dbpassword=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$3}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
-export TF_VAR_database=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$4}' | awk -F',' '{print$1}' | sed 's/\"//g' | sed 's/\}//g' | tr -d \'\" )
-###if you are using localstack please use below
-#export TF_VAR_dbusername=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
-#export TF_VAR_dbpassword=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$3}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
-#export TF_VAR_database=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$4}' | awk -F',' '{print$1}' | sed 's/\"//g' | sed 's/\}//g' | tr -d \'\" )
+export TF_VAR_dbusername=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+export TF_VAR_dbpassword=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$3}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+export TF_VAR_database=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$4}' | awk -F',' '{print$1}' | sed 's/\"//g' | sed 's/\}//g' | tr -d \'\" )
+export dbusername=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+export dbpassword=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$3}' | awk -F':' '{print$2}' | awk -F',' '{print$1}' | sed 's/\"//g' )
+export database=$(aws secretsmanager --endpoint-url=http://localhost:4566 get-secret-value --secret-id `echo $secretdbid` | awk 'NR==4{print$2}' | awk -F':' '{print$4}' | awk -F',' '{print$1}' | sed 's/\"//g' | sed 's/\}//g' | tr -d \'\" )
